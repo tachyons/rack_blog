@@ -8,10 +8,13 @@ use Rack::Static,
 class MyApp
 	def call(env)
 		# env has request/response information
-		@path= env['PATH_INFO']
+		@request=Rack::Request.new(env)
+		@path= @request.path
 		@req_method=env['REQUEST_METHOD']
 		route(@path,@req_method)
-		[200, {'Content-Type' => 'text/html'}, [@responce]]
+		
+		Rack::Response.new(@responce)
+		#[200, {'Content-Type' => 'text/html'}, [@responce]]
 	end
 	def route(path,req_method)
 		@responce=""

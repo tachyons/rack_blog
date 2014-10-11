@@ -1,5 +1,6 @@
-class User 
+load './app/controller/MainController.rb'
+class User < MainController
 	def index
-		puts "Hello fro, User"
+		render "index"
 	end
 end
