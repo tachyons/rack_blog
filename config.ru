@@ -6,11 +6,16 @@ use Rack::Static,
   :urls => ["/media/images", "/media/js", "/media/css"],
   :root => "public"
 class MyApp
-	def call(env)
-		# env has request/response information
+	def self.call(env)
+		new(env).response
+	end
+	def initialize(env)
 		@request=Rack::Request.new(env)
+	end
+	def response()
+		# env has request/response information
 		@path= @request.path
-		@req_method=env['REQUEST_METHOD']
+		@req_method=@request_method
 		route(@path,@req_method)
 		
 		Rack::Response.new(@responce)
@@ -71,4 +76,4 @@ class MyApp
 		return @controller_list
 	end
 end
-run MyApp.new
+run MyApp
