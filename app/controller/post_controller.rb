@@ -1,5 +1,8 @@
-class Post 
+require './app/model/post_model.rb'
+load './app/controller/MainController.rb'
+class PostController  < MainController
 	def index
-		puts "Hello fro, post"
+		@post=Post.new
+		render "index"
 	end
 end

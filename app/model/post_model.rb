@@ -1,2 +1,4 @@
-class PostModel < ActiveRecord::Base
+class Post < ActiveRecord::Base
+	def create
+	end
 end

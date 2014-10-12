@@ -31,16 +31,16 @@ class MyApp
 			@controller="#{$1}"
 			if @controller_list.include? @controller
 				@responce+="valid"
-				als_load(@controller)
+				@responce=als_load(@controller)
 			else
 				@responce+=@controller_list.inspect
 			end
-		when /^\/(\w*)(\/)?\w*(\/)?$/
+		when /^\/(\w+)(\/)?(\w+)(\/)?$/
 			@controller="#{$1}"
-			@action="#{$2}"
+			@action="#{$3}"
 			@responce+="two"
 			if @controller_list.include? @controller
-				als_load(@controller,@action)
+				@responce=als_load(@controller,@action)
 			end
 		when /^\/\w*(\/)?\d*(\/)?\w*(\/)?$/
 			@controller="#{$1}"
@@ -62,10 +62,11 @@ class MyApp
 		ActiveRecord::Base.establish_connection(dbconfig)
 		controller_file="./app/controller/"+controller+"_controller.rb"
 		load controller_file
-		class_name=controller.capitalize
+		class_name=controller.capitalize+"Controller"
 		@responce+=class_name;
 		ob=class_name.constantize.new
 		ob.send(action)
+		#@responce=" Action=#{action}"
 	end
 	def get_controllers_list
 		@controller_list=[]
