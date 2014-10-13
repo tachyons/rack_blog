@@ -15,7 +15,7 @@ class MyApp
 	def response()
 		# env has request/response information
 		@path= @request.path
-		@req_method=@request_method
+		@req_method=@request.request_method
 		route(@path,@req_method)
 		
 		Rack::Response.new(@responce)
@@ -24,34 +24,51 @@ class MyApp
 	def route(path,req_method)
 		@responce=""
 		@controller_list=get_controllers_list
-		case path
-		when /^\/$/ 
-			@responce+="Root"
-		when /^\/(\w*)(\/)?$/ 
-			@controller="#{$1}"
-			if @controller_list.include? @controller
-				@responce+="valid"
-				@responce=als_load(@controller)
+		@controller,@action,@id=url_parser(path)
+		case req_method
+			when 'GET'
+				@responce+="GET"
+				
+			when 'POST'
+				@responce+="POST"
+			when 'PUT'
+
+			when 'PATCH'
+			when 'DELETE'
 			else
-				@responce+=@controller_list.inspect
-			end
-		when /^\/(\w+)(\/)?(\w+)(\/)?$/
-			@controller="#{$1}"
-			@action="#{$3}"
-			@responce+="two"
-			if @controller_list.include? @controller
-				@responce=als_load(@controller,@action)
-			end
-		when /^\/\w*(\/)?\d*(\/)?\w*(\/)?$/
-			@controller="#{$1}"
-			@action="#{$3}"
-			@id="{$2}"
-			@responce+="Three"			
-		else
-			@responce="failure"
+				@responce+=req_method
 		end
 		# @responce=path.scan('/\w*/').first.last+req_method;
-		
+	end
+	def url_parser(url)
+		case url
+			when  /^\/$/
+
+			when /^\/(\w*)(\/)?$/
+				controller="#{$1}"
+				if @controller_list.include? controller
+					return [controller,nil,nil]
+				else
+					return [nil,nil,nil]
+				end
+			when /^\/(\w+)(\/)?(\w+)(\/)?$/
+				controller="#{$1}"
+				action="#{$3}"
+				if @controller_list.include? controller
+					return [controller,action,nil]
+				else
+					return [nil,nil,nil]
+				end
+			when /^\/\w*(\/)?\d*(\/)?\w*(\/)?$/
+				controller="#{$1}"
+				action="#{$3}"
+				id="{$2}"
+				if @controller_list.include? controller
+					return [controller,action,id]
+				else
+					return [nil,nil,nil]
+				end
+			end
 	end
 	def als_load(controller,action="index",id=nil)
 		require 'mysql'
