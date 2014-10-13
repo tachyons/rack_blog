@@ -3,7 +3,6 @@ require 'mysql'
 require 'active_record'
 require 'yaml'
 require 'active_support'
-require 'iconv'
 require File.expand_path('../app/config/application', __FILE__)
 
 task :default => :migrate
