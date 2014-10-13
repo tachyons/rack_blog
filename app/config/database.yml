@@ -1,5 +1,5 @@
 adapter: mysql
-database:  database
+database: als
 username: root
 password: mysqlroot
 host:  localhost
