@@ -1,0 +1,28 @@
+D, [2014-10-13T13:22:21.447169 #11838] DEBUG -- :   [1m[36m (116.9ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+D, [2014-10-13T13:22:21.588603 #11838] DEBUG -- :   [1m[35m (140.9ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) 
+D, [2014-10-13T13:22:21.590407 #11838] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+I, [2014-10-13T13:22:21.609892 #11838]  INFO -- : Migrating to Schema (1)
+D, [2014-10-13T13:22:21.675264 #11838] DEBUG -- :   [1m[35m (63.6ms)[0m  CREATE TABLE `users` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255)) ENGINE=InnoDB
+D, [2014-10-13T13:22:21.720868 #11838] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+D, [2014-10-13T13:22:21.733228 #11838] DEBUG -- :   [1m[35mSQL (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES (?)  [["version", "1"]]
+D, [2014-10-13T13:22:21.775504 #11838] DEBUG -- :   [1m[36m (42.1ms)[0m  [1mCOMMIT[0m
+D, [2014-10-13T13:24:19.630470 #11915] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+D, [2014-10-13T13:24:43.164701 #11955] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+D, [2014-10-13T13:26:33.504515 #11981] DEBUG -- :   [1m[36m (163.1ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+D, [2014-10-13T13:26:33.621358 #11981] DEBUG -- :   [1m[35m (116.4ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) 
+D, [2014-10-13T13:26:33.622767 #11981] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+I, [2014-10-13T13:26:33.623551 #11981]  INFO -- : Migrating to Schema (1)
+D, [2014-10-13T13:26:33.671988 #11981] DEBUG -- :   [1m[35m (47.0ms)[0m  CREATE TABLE `users` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `password` varchar(255)) ENGINE=InnoDB
+D, [2014-10-13T13:26:33.674276 #11981] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+D, [2014-10-13T13:26:33.676188 #11981] DEBUG -- :   [1m[35mSQL (0.4ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES (?)  [["version", "1"]]
+D, [2014-10-13T13:26:33.705628 #11981] DEBUG -- :   [1m[36m (29.3ms)[0m  [1mCOMMIT[0m
+D, [2014-10-13T13:29:14.258365 #12041] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+D, [2014-10-13T13:29:20.958639 #12046] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+D, [2014-10-13T13:29:43.348051 #12063] DEBUG -- :   [1m[36m (50.0ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+D, [2014-10-13T13:29:43.466195 #12063] DEBUG -- :   [1m[35m (117.7ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) 
+D, [2014-10-13T13:29:43.467529 #12063] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+I, [2014-10-13T13:29:43.468266 #12063]  INFO -- : Migrating to Schema (1)
+D, [2014-10-13T13:29:43.516847 #12063] DEBUG -- :   [1m[35m (47.1ms)[0m  CREATE TABLE `users` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `password` varchar(255)) ENGINE=InnoDB
+D, [2014-10-13T13:29:43.519220 #12063] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+D, [2014-10-13T13:29:43.520965 #12063] DEBUG -- :   [1m[35mSQL (0.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES (?)  [["version", "1"]]
+D, [2014-10-13T13:29:43.550457 #12063] DEBUG -- :   [1m[36m (29.4ms)[0m  [1mCOMMIT[0m

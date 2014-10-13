@@ -26,7 +26,7 @@ class MyApp
 		@controller_list=get_controllers_list
 		case path
 		when /^\/$/ 
-			@responce+="root"
+			@responce+="Root"
 		when /^\/(\w*)(\/)?$/ 
 			@controller="#{$1}"
 			if @controller_list.include? @controller
