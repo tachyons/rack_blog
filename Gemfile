@@ -4,6 +4,8 @@ gem 'rack'
 gem 'thin'
 gem 'tilt'
 gem 'haml'
+gem 'mysql'
+gem 'activerecord'
 
 group :development, :test do
   gem 'pry'
