@@ -16,21 +16,36 @@ class MyApp
 		# env has request/response information
 		@path= @request.path
 		@req_method=@request.request_method
-		route(@path,@req_method)
+		@parameters=@request.params
+		route(@path,@req_method,@parameters)
 		
 		Rack::Response.new(@responce)
 		#[200, {'Content-Type' => 'text/html'}, [@responce]]
 	end
-	def route(path,req_method)
+	def route(path,req_method,parameters)
 		@responce=""
 		@controller_list=get_controllers_list
-		@controller,@action,@id=url_parser(path)
+		controller,action,id=url_parser(path)
 		case req_method
 			when 'GET'
-				@responce+="GET"
-				
+				if(controller==nil)
+					@responce="root"
+				else 
+					if(action==nil)
+						@responce=als_load(parameters,controller)
+					else
+						if(id==nil)
+							@responce=als_load(parameters,controller,action,nil)
+						else
+							@responce=als_load(parameters,controller,action,id)
+						end
+					end
+				end
 			when 'POST'
-				@responce+="POST"
+				@responce="POST"
+				@controller_list=get_controllers_list
+				controller,action,id=url_parser(path)
+				als_load(parameters,controller,action,id)
 			when 'PUT'
 
 			when 'PATCH'
@@ -70,18 +85,12 @@ class MyApp
 				end
 			end
 	end
-	def als_load(controller,action="index",id=nil)
-		require 'mysql'
-		require 'active_record'
-		require 'yaml'
-		 
-		dbconfig = YAML::load(File.open('./app/config/database.yml'))
-		ActiveRecord::Base.establish_connection(dbconfig)
+	def als_load(params,controller,action="index",id=nil)
 		controller_file="./app/controller/"+controller+"_controller.rb"
 		load controller_file
 		class_name=controller.capitalize+"Controller"
 		@responce+=class_name;
-		ob=class_name.constantize.new
+		ob=class_name.constantize.new params
 		ob.send(action)
 		#@responce=" Action=#{action}"
 	end
