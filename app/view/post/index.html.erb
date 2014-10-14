@@ -1,0 +1,14 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Index</title>
+	
+</head>
+<body id="ID">
+	Posts List
+	<% @posts.each do |post| %>
+	<h2><%= post.title %></h2>
+	<%= post.content %>
+<% end %>
+</body>
+</html>
