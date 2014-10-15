@@ -10,16 +10,36 @@ class UserController < MainController
 		render "new"
 	end
 	def create
-		@user = User.new(@params)
-		#@user.password=@params.inspect
+		#@user = User.new(@params)
+		#@user.save
+		@user = User.new
+		@user.username=@params['username']
+		@user.password = @params['password']
+
 		@user.save
 	end
+	def login
+		render "login"
+		
+	end
+	def login_post
+		@user = User.find_by_username(@params['username'])
+  		if @user.password == @params['password']
+  			render "success"
+  			puts "success"
+  		else
+  			puts "Login Error"
+  		end
+  
+	end
 	def show
+		render "show"
 	end
 	def edit
 	end
 	def update
 	end
 	def destroy
+		User.destroy(@id)
 	end
 end

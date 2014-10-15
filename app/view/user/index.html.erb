@@ -9,6 +9,13 @@
 <% @users.each do |user| %>
 	<li>
 	<%= user.username %>
+	<form accept-charset="UTF-8" action="/user/<%= user.id%>" method="post">
+  		<div style="margin:0;padding:0">
+		    <input name="_method" type="hidden" value="DELETE" />
+		    <input name="utf8" type="hidden" value="&#x2713;" />
+		    <input type="submit" value="delete">
+		</div>
+	</form>
 	</li>
 <% end %>
 </body>

@@ -52,3 +52,16 @@ D, [2014-10-13T15:40:27.094521 #5621] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1
 D, [2014-10-13T15:40:27.095428 #5621] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES (?)  [["version", "2"]]
 D, [2014-10-13T15:40:27.117683 #5621] DEBUG -- :   [1m[36m (22.0ms)[0m  [1mCOMMIT[0m
 D, [2014-10-13T15:40:32.335980 #5626] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+D, [2014-10-15T12:33:54.692589 #12794] DEBUG -- :   [1m[36m (84.0ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+D, [2014-10-15T12:33:54.827957 #12794] DEBUG -- :   [1m[35m (134.8ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) 
+D, [2014-10-15T12:33:54.829347 #12794] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+I, [2014-10-15T12:33:54.830109 #12794]  INFO -- : Migrating to User (1)
+D, [2014-10-15T12:33:54.905255 #12794] DEBUG -- :   [1m[35m (73.8ms)[0m  CREATE TABLE `users` (`id` int(11) auto_increment PRIMARY KEY, `username` varchar(255), `password_hash` varchar(255)) ENGINE=InnoDB
+D, [2014-10-15T12:33:54.907703 #12794] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+D, [2014-10-15T12:33:54.909448 #12794] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES (?)  [["version", "1"]]
+D, [2014-10-15T12:33:54.939317 #12794] DEBUG -- :   [1m[36m (29.7ms)[0m  [1mCOMMIT[0m
+I, [2014-10-15T12:33:54.939384 #12794]  INFO -- : Migrating to Post (2)
+D, [2014-10-15T12:33:54.991006 #12794] DEBUG -- :   [1m[35m (50.6ms)[0m  CREATE TABLE `posts` (`id` int(11) auto_increment PRIMARY KEY, `title` varchar(255), `content` varchar(255)) ENGINE=InnoDB
+D, [2014-10-15T12:33:54.991402 #12794] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
+D, [2014-10-15T12:33:54.991875 #12794] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES (?)  [["version", "2"]]
+D, [2014-10-15T12:33:55.016785 #12794] DEBUG -- :   [1m[36m (24.8ms)[0m  [1mCOMMIT[0m

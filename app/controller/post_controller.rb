@@ -13,4 +13,7 @@ class PostController  < MainController
 		@post= Post.new(@params)
 		@post.save
 	end
+	def destroy
+		User.destroy(@id)
+	end
 end

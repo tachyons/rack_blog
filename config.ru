@@ -1,10 +1,16 @@
-require './lib/router.rb'
+require 'bcrypt'
+use Rack::Session::Cookie , :secret => 'change_me'
+
 use Rack::CommonLogger
 use Rack::ShowExceptions
 use Rack::Lint
+use Rack::MethodOverride
 use Rack::Static, 
   :urls => ["/media/images", "/media/js", "/media/css"],
   :root => "public"
+class ALS
+
+end
 class MyApp
 	def self.call(env)
 		new(env).response
@@ -18,13 +24,17 @@ class MyApp
 		@req_method=@request.request_method
 		@parameters=@request.params
 		route(@path,@req_method,@parameters)
-		
+		@request.session[:msg]="Hello Rack"
 		Rack::Response.new(@responce)
 		#[200, {'Content-Type' => 'text/html'}, [@responce]]
 	end
 	def route(path,req_method,parameters)
 		@responce=""
 		@controller_list=get_controllers_list
+		if @controller_list.nil?
+		 	@responce="404"
+		 	return nil
+		end
 		controller,action,id=url_parser(path)
 		case req_method
 			when 'GET'
@@ -45,13 +55,25 @@ class MyApp
 				@responce="POST"
 				@controller_list=get_controllers_list
 				controller,action,id=url_parser(path)
+				if action.nil?
+					action="create"
+				end
 				als_load(parameters,controller,action,id)
 			when 'PUT'
 
 			when 'PATCH'
 			when 'DELETE'
+				@responce="DELETE"
+				@controller_list=get_controllers_list
+				controller,action,id=url_parser(path)
+				if action.nil? || action.empty?
+					action="destroy"
+				end
+				als_load(parameters,controller,action,id)
+
 			else
 				@responce+=req_method
+
 		end
 		# @responce=path.scan('/\w*/').first.last+req_method;
 	end
@@ -59,14 +81,14 @@ class MyApp
 		case url
 			when  /^\/$/
 
-			when /^\/(\w*)(\/)?$/
+			when /^\/(\w+)(\/)?$/
 				controller="#{$1}"
 				if @controller_list.include? controller
 					return [controller,nil,nil]
 				else
 					return [nil,nil,nil]
 				end
-			when /^\/(\w+)(\/)?(\w+)(\/)?$/
+			when /^\/(\w+)(\/)?([a-zA-Z_]+)(\/)?$/
 				controller="#{$1}"
 				action="#{$3}"
 				if @controller_list.include? controller
@@ -74,10 +96,10 @@ class MyApp
 				else
 					return [nil,nil,nil]
 				end
-			when /^\/\w*(\/)?\d*(\/)?\w*(\/)?$/
+			when /^\/(\w+)(\/)?(\d+)(\/)?(\w*)?(\/)?$/
 				controller="#{$1}"
-				action="#{$3}"
-				id="{$2}"
+				action="#{$5}"
+				id="#{$3}"
 				if @controller_list.include? controller
 					return [controller,action,id]
 				else
@@ -89,8 +111,8 @@ class MyApp
 		controller_file="./app/controller/"+controller+"_controller.rb"
 		load controller_file
 		class_name=controller.capitalize+"Controller"
-		@responce+=class_name;
-		ob=class_name.constantize.new params
+		#@responce+=class_name;
+		ob=class_name.constantize.new(params,id)
 		ob.send(action)
 		#@responce=" Action=#{action}"
 	end
@@ -104,3 +126,4 @@ class MyApp
 	end
 end
 run MyApp
+
