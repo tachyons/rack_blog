@@ -65,3 +65,4 @@ D, [2014-10-15T12:33:54.991006 #12794] DEBUG -- :   [1m[35m (50.6ms)[0m  CREA
 D, [2014-10-15T12:33:54.991402 #12794] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mBEGIN[0m
 D, [2014-10-15T12:33:54.991875 #12794] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES (?)  [["version", "2"]]
 D, [2014-10-15T12:33:55.016785 #12794] DEBUG -- :   [1m[36m (24.8ms)[0m  [1mCOMMIT[0m
+D, [2014-10-15T17:12:30.486131 #26558] DEBUG -- :   [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m

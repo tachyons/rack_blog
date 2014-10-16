@@ -3,6 +3,7 @@ class Post < ActiveRecord::Migration
     create_table :posts, force: true do |t|
       t.string :title
       t.string :content
+      t.number :user_id
      puts 'ran up method'
     end
     def down
