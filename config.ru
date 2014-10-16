@@ -58,7 +58,7 @@ class MyApp
 				if action.nil?
 					action="create"
 				end
-				als_load(parameters,controller,action,id)
+				@responce=als_load(parameters,controller,action,id)
 			when 'PUT'
 
 			when 'PATCH'

@@ -15,8 +15,8 @@ class UserController < MainController
 		@user = User.new
 		@user.username=@params['username']
 		@user.password = @params['password']
-
-		@user.save
+		@user.save!
+		@user.errors.full_messages
 	end
 	def login
 		render "login"
@@ -24,13 +24,14 @@ class UserController < MainController
 	end
 	def login_post
 		@user = User.find_by_username(@params['username'])
-  		if @user.password == @params['password']
+  		if @user && @user.password == @params['password']
   			render "success"
-  			puts "success"
+  			#puts "success"
   		else
-  			puts "Login Error"
+  			render "fail"
+  			#puts "Login Error"
   		end
-  
+  	#render "success"
 	end
 	def show
 		render "show"

@@ -11,7 +11,9 @@ class PostController  < MainController
 	end
 	def create
 		@post= Post.new(@params)
-		@post.save
+		@post.user_id="0";
+		@post.save!
+		@post.errors.full_messages
 	end
 	def destroy
 		User.destroy(@id)
