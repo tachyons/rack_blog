@@ -25,7 +25,11 @@ class MyApp #just added a comment.. nothing else
 		@parameters=@request.params
 		route(@path,@req_method,@parameters)
 		@request.session[:msg]="Hello Rack"
+		@request.session.update(@session);
 		Rack::Response.new(@responce)
+		# @request.session = { :font_size => 10, :font_family => "Arial" }
+		#grades = { "Jane Doe" => 10, "Jim Doe" => 6 }
+
 		#[200, {'Content-Type' => 'text/html'}, [@responce]]
 	end
 	def route(path,req_method,parameters)
@@ -36,18 +40,18 @@ class MyApp #just added a comment.. nothing else
 		 	return nil
 		end
 		controller,action,id=url_parser(path)
-		case req_method
+		@responce,@session = case req_method
 			when 'GET'
 				if(controller==nil)
-					@responce="<a href=\"user/new\">shdjb</a>";
+					"<a href=\"user/new\">shdjb</a>";
 				else 
 					if(action==nil)
-						@responce=als_load(parameters,controller)
+						als_load(parameters,controller)
 					else
 						if(id==nil)
-							@responce=als_load(parameters,controller,action,nil)
+							als_load(parameters,controller,action,nil)
 						else
-							@responce=als_load(parameters,controller,action,id)
+							als_load(parameters,controller,action,id)
 						end
 					end
 				end
@@ -112,8 +116,9 @@ class MyApp #just added a comment.. nothing else
 		load controller_file
 		class_name=controller.capitalize+"Controller"
 		#@responce+=class_name;
-		ob=class_name.constantize.new(params,id)
-		ob.send(action)
+		ob=class_name.constantize.new(params,id,@session)
+		ob.session = @request.session 
+		[ob.send(action),ob.session]
 		#@responce=" Action=#{action}"
 	end
 	def get_controllers_list
