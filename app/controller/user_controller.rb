@@ -34,6 +34,7 @@ class UserController < MainController
   	#render "success"
 	end
 	def show
+		@user=User.find_by_id(@id)
 		render "show"
 	end
 	def edit

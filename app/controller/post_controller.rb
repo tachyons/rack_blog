@@ -1,5 +1,6 @@
 
 require './app/model/post_model.rb'
+require './app/model/user_model.rb'
 load './app/controller/MainController.rb'
 class PostController  < MainController
 	def index
@@ -10,8 +11,11 @@ class PostController  < MainController
 		render "new"
 	end
 	def create
-		@post= Post.new(@params)
-		@post.user_id="0";
+		@user = User.find(1)
+    	@post = @user.posts.create(@params)
+
+		# @post= Post.new(@params)
+		# @post.user_id="0";
 		@post.save!
 		@post.errors.full_messages
 	end
