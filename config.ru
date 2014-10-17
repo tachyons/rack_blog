@@ -11,7 +11,7 @@ use Rack::Static,
 class ALS
 
 end
-class MyApp
+class MyApp #just added a comment.. nothing else
 	def self.call(env)
 		new(env).response
 	end
