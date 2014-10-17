@@ -3,7 +3,9 @@ class Post < ActiveRecord::Migration
     create_table :posts, force: true do |t|
       t.string :title
       t.string :content
-      t.integer :user_id
+      t.references :user, index: true
+ 
+      t.timestamps
      puts 'ran up method'
     end
     def down

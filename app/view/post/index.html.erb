@@ -7,7 +7,7 @@
 <body id="ID">
 	Posts List
 	<% @posts.each do |post| %>
-	<h2><%= post.title %></h2>
+	<h2><a href="<%= post.id %>/show"> <%= post.title %> </a></h2>
 	<%= post.content %>
 <% end %>
 </body>

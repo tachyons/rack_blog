@@ -32,14 +32,14 @@ class MyApp
 		@responce=""
 		@controller_list=get_controllers_list
 		if @controller_list.nil?
-		 	@responce="404"
+		 	@responce="<a href=\"user/new\">shdjb</a>";
 		 	return nil
 		end
 		controller,action,id=url_parser(path)
 		case req_method
 			when 'GET'
 				if(controller==nil)
-					@responce="root"
+					@responce="<a href=\"user/new\">shdjb</a>";
 				else 
 					if(action==nil)
 						@responce=als_load(parameters,controller)

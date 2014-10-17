@@ -18,4 +18,8 @@ class PostController  < MainController
 	def destroy
 		User.destroy(@id)
 	end
+	def show
+		@post=Post.find_by_id(@id)
+		render "show"
+	end
 end
