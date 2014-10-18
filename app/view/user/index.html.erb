@@ -5,19 +5,28 @@
 	
 </head>
 <body id="ID">
-<p>Current User : <%= @current_userid %></p>
-	Users List
-<% @users.each do |user| %>
-	<li>
-	<%= user.username %>
-	<form accept-charset="UTF-8" action="/user/<%= user.id%>" method="post">
-  		<div style="margin:0;padding:0">
-		    <input name="_method" type="hidden" value="DELETE" />
-		    <input name="utf8" type="hidden" value="&#x2713;" />
-		    <input type="submit" value="delete">
-		</div>
-	</form>
-	</li>
-<% end %>
-</body>
+<!-- <p>Current User : < %= @current_userid %></p>
+ --><h1>Users List</h1>
+	<table class="table">
+	<% @users.each do |user| %>
+		<tr>
+		<td>
+		<%= user.username %>
+		</td>
+		<td>
+			<a href="/user/<%= user.id%>/show"><button type="button" class="btn btn-primary">View</button></a>
+		</td>
+		<td>
+		<form accept-charset="UTF-8" action="/user/<%= user.id%>" method="post">
+	  		<div style="margin:0;padding:0">
+			    <input name="_method" type="hidden" value="DELETE" />
+			    <input name="utf8" type="hidden" value="&#x2713;" />
+			    <input type="submit" class="btn btn-link" value="delete">
+			</div>
+		</form>
+		</td>
+		</tr>
+	<% end %>
+</table>
+<a href="/user/new"><button type="button" class="btn btn-primary">Create New User</button></body></a>
 </html>

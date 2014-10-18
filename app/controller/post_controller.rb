@@ -12,7 +12,7 @@ class PostController  < MainController
 	end
 	def create
 		@user_id=@session[:user_id]
-		if @user_id.nil? #|| @user_id.empty?
+		if @user_id.nil?
 			return " Please Login"
 		end
 		@user = User.find(@user_id)
@@ -21,7 +21,8 @@ class PostController  < MainController
 		# @post= Post.new(@params)
 		# @post.user_id="0";
 		@post.save!
-		 @post.errors.full_messages
+		@post.errors.full_messages
+		"<a href=\"/post\">Back </a>"
 	end
 	def destroy
 		Post.destroy(@id)

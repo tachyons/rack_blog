@@ -43,7 +43,7 @@ class MyApp #just added a comment.. nothing else
 		@responce,@session = case req_method
 			when 'GET'
 				if(controller==nil)
-					als_load(nil,'post','index',nil)
+					als_load(nil,'user','index',nil)
 				else 
 					if(action==nil)
 						als_load(parameters,controller)

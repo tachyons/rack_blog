@@ -5,10 +5,16 @@
 	
 </head>
 <body id="ID">
+	<form method="POST" action="/post/create">
+	    <input type="text" name="title" class="form-control"/> <br>
+	    <textarea name="content" class="form-control"></textarea>
+	    <input type="submit"   class="btn btn-primary"/>
+	 </form>
 	Posts List
 	<% @posts.each do |post| %>
-	<h2><a href="<%= post.id %>/show"> <%= post.title %> </a></h2>
-	<%= post.content %>
+	<h2><a href="/post/<%= post.id %>/show"> <%= post.title %> </a></h2>
+	<p> <%= post.content %> </p>
+	<%= post.created_at %>
 <% end %>
 </body>
 </html>

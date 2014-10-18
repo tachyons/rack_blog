@@ -59,5 +59,6 @@ class UserController < MainController
 	end
 	def destroy
 		User.destroy(@id)
+		"Deleted"
 	end
 end
