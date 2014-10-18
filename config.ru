@@ -24,7 +24,7 @@ class MyApp #just added a comment.. nothing else
 		@req_method=@request.request_method
 		@parameters=@request.params
 		route(@path,@req_method,@parameters)
-		@request.session[:msg]="Hello Rack"
+		# @request.session[:msg]="Hello Rack"
 		@request.session.update(@session);
 		Rack::Response.new(@responce)
 		# @request.session = { :font_size => 10, :font_family => "Arial" }
@@ -43,7 +43,7 @@ class MyApp #just added a comment.. nothing else
 		@responce,@session = case req_method
 			when 'GET'
 				if(controller==nil)
-					"<a href=\"user/new\">shdjb</a>";
+					als_load(nil,'post','index',nil)
 				else 
 					if(action==nil)
 						als_load(parameters,controller)
