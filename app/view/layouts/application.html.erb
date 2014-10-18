@@ -37,6 +37,15 @@
             <li><a href="/user">Users</a></li>
             <li><a href="/post">posts</a></li>
           </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <% if @session[:user_id].nil? %>
+            <li><a href="/user/login">Sign In</a></li>
+            <li><a href="/user/new">Sign UP</a></li>
+            <%else %>
+            <li><a href="/user/<%= @session[:user_id]%>/show">Profile</a></li>
+            <li><a href="/user/logout">Sign Out</a></li>
+            <% end %>
+          </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
