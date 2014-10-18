@@ -1,6 +1,6 @@
 <h1> <%= @user.username %> </h1>
 <% @posts.each do |post| %>
-	<h2><a href="<%= post.id %>/show"> <%= post.title %> </a></h2>
+	<h2><a href="/post/<%= post.id %>/show"> <%= post.title %> </a></h2>
 	<%= post.content %>
 <% end %>
 

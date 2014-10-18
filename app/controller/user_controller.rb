@@ -26,12 +26,12 @@ class UserController < MainController
 		if @user_id.nil? #|| @user_id.empty?
 			render "login"
 		else
-			return " You are already logged in"
+			return " You are already logged in <a href=\"/user/logout\"> Logout </a>"
 		end
 
 	end
 	def logout
-		if @session[:user_id].nil?
+		if !@session[:user_id].nil?
 			@session.delete('user_id')
 		end
 		return "You are not logged in"

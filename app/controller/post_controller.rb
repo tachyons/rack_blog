@@ -6,6 +6,7 @@ class PostController  < MainController
 	def index
 		@posts=Post.all
 		render "index"
+
 	end
 	def new
 		render "new"
@@ -25,7 +26,16 @@ class PostController  < MainController
 		"<a href=\"/post\">Back </a>"
 	end
 	def destroy
-		Post.destroy(@id)
+		@user_id=@session[:user_id]
+		@post_user_id=Post.find(@id).user_id
+		if @user_id.nil?
+			return " Please Login"
+		elsif @user_id != @post_user_id
+			return " You are not authenticated"
+		else
+			Post.destroy(@id)
+			"Deleted"
+		end
 	end
 	def show
 		@post=Post.find_by_id(@id)
