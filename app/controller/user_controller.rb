@@ -15,9 +15,9 @@ class UserController < MainController
 	def create
 		#@user = User.new(@params)
 		#@user.save
-		@user = User.new
-		@user.username=@params['username']
-		@user.password = @params['password']
+		@user = User.new(@params)
+		#@user.username=@params['username']
+		#@user.password = @params['password']
 		@user.save!
 		@user.errors.full_messages
 	end

@@ -73,3 +73,16 @@ code {
   border-top-right-radius: 0;
 }
 .form-control { margin-bottom: 10px; }
+#signup_container {
+  margin:0 auto;
+  width:1000px;
+}
+#new_post_container {
+  width: 355px;
+}
+#success_message{
+  color:green;
+}
+#error_status {
+  color:red;
+}

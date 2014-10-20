@@ -1,7 +1,109 @@
-<h1> <%= @user.username %> </h1>
-<% @posts.each do |post| %>
-	<h2><a href="/post/<%= post.id %>/show"> <%= post.title %> </a></h2>
-	<%= post.content %>
-<% end %>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<h3 class="panel-title"> <%= @user.firstname + @user.lastname  %></h3>
+				</div>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100" class="img-circle"> 
+					</div>
 
+					<!--<div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+					<dl>
+					<dt>DEPARTMENT:</dt>
+					<dd>Administrator</dd>
+					<dt>HIRE DATE</dt>
+					<dd>11/12/2013</dd>
+					<dt>DATE OF BIRTH</dt>
+					<dd>11/12/2013</dd>
+					<dt>GENDER</dt>
+					<dd>Male</dd>
+					</dl>
+					</div>-->
+					<div class=" col-md-9 col-lg-9 "> 
+						<table class="table table-user-information">
+							<tbody>
+								<!-- <tr>
+									<td>Department:</td>
+									<td>Programming</td>
+								</tr>
+								<tr>
+									<td>Hire date:</td>
+									<td>06/23/2013</td>
+								</tr> -->
+								<tr>
+									<td>User Name:</td>
+									<td><%= @user.username %></td>
+								</tr>
+								<tr>
+									<td>Date of Birth</td>
+									<td> <%= @user.date_of_birth %></td>
+								</tr>
 
+								<tr>
+								<tr>
+									<td>Gender</td>
+									<td> <%= @user.sex %></td>
+								</tr>
+								<!-- <tr>
+									<td>Home Address</td>
+									<td>Metro Manila,Philippines</td>
+								</tr> -->
+								<tr>
+								<td>Email</td>
+									<td><a href="mailto:info@support.com"> <%= @user.email %></a></td>
+								<!-- </tr>
+									<td>Phone Number</td>
+									<td>123-4567-890(Landline)<br><br>555-4567-890(Mobile)
+								</td>
+
+								</tr> -->
+
+							</tbody>
+						</table>
+
+						<!-- <a href="#" class="btn btn-primary">My Sales Performance</a>
+						<a href="#" class="btn btn-primary">Team Sales Performance</a> -->
+					</div>
+				</div>
+			</div>
+			<div class="panel-footer">
+				<a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+				<span class="pull-right">
+				<a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+				<a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+				</span>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
+<% @posts.reverse.each do |post| %>
+	<div class="container">
+	  <div class="well">
+	  		<form accept-charset="UTF-8" action="/post/<%= post.id%>" method="post">
+		  		<div style="margin:0;padding:0">
+				    <input name="_method" type="hidden" value="DELETE" />
+				    <input name="utf8" type="hidden" value="&#x2713;" />
+				    <button type="submit" class="close" value="delete">
+				    	<span aria-hidden="true">&times;</span>
+						<span class="sr-only">Close</span>
+					</button>
+				</div>
+			</form>
+	      <div class="media">
+	  		<div class="media-body">
+	    		<h4 class="media-heading"><%= post.title %></h4>
+	          <p class="text-right">By <%= User.find(post.user_id).username %></p>
+	          <p><%= post.content %></p>
+	          <ul class="list-inline list-unstyled">
+	  			<li><span><i class="glyphicon glyphicon-calendar"></i> <%= post.created_at %> </span></li>
+				</ul>
+	       </div>
+	    </div>
+	  </div>
+	 </div>
+ <% end %>

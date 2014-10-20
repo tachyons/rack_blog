@@ -1,8 +1,7 @@
-
-<div class="container">
+<div class="container" id="signup_container">
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-4 well well-sm">
-            <legend><a href="http://www.jquery2dotnet.com"><i class="glyphicon glyphicon-globe"></i></a> Sign up!</legend>
+            <legend><a href="#"><i class="glyphicon glyphicon-globe"></i></a> Sign up!</legend>
             <form class="form-horizontal" role="form" action="/user/create" method="POST">
             <div class="row">
                 <div class="col-xs-6 col-md-6">
@@ -15,27 +14,11 @@
             </div>
 		     <input type="text" class="form-control" id="inputusername" name="username" required placeholder="User Name">
             <input class="form-control" name="email" placeholder="Your Email" type="email" />
-            <input class="form-control" name="reenteremail" placeholder="Re-enter Email" type="email" />
+            <input class="form-control" name="" placeholder="Re-enter Email" type="email" />
             <input class="form-control" name="password" placeholder="New Password" type="password" />
             <label for="">
                 Birth Date</label>
-            <div class="row">
-                <div class="col-xs-4 col-md-4">
-                    <select class="form-control">
-                        <option value="Month">Month</option>
-                    </select>
-                </div>
-                <div class="col-xs-4 col-md-4">
-                    <select class="form-control">
-                        <option value="Day">Day</option>
-                    </select>
-                </div>
-                <div class="col-xs-4 col-md-4">
-                    <select class="form-control">
-                        <option value="Year">Year</option>
-                    </select>
-                </div>
-            </div>
+           <input class="form-control" name="date_of_birth" placeholder="Your Date of Birth" type="date" />
             <label class="radio-inline">
                 <input type="radio" name="sex" id="inlineCheckbox1" value="male" />
                 Male
