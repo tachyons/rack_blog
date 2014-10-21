@@ -20,7 +20,7 @@ class UserController < MainController
 		#@user.password = @params['password']
 		@user.save!
 		@user.errors.full_messages
-		render "/user/index"
+		redirect_to "/user/index"
 	end
 	def login
 		@user_id=@session[:user_id]

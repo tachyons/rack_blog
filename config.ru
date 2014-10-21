@@ -28,7 +28,6 @@ class MyApp #just added a comment.. nothing else
 		@request.session.update(@session);
 		res = Rack::Response.new
 		#res["Content-Type"] = "text/plain"
-		puts "Status :" + @status.to_s
 		res.status=200
 		if(@status!=301)
 			res.write @responce

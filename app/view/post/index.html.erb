@@ -14,35 +14,38 @@
 	        </div>
 		</div>
 	</div>
-<% end %>
+
 		
 <!-- 		<h2><a href="/post/< %= post.id %>/show"> < %= post.title %> </a></h2>
  -->
 
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
-<% @posts.reverse.each do |post| %>
-	<div class="container post" >
-	  <div class="well">
-	  		<form accept-charset="UTF-8" action="/post/<%= post.id%>" method="post">
-		  		<div style="margin:0;padding:0">
-				    <input name="_method" type="hidden" value="DELETE" />
-				    <input name="utf8" type="hidden" value="&#x2713;" />
-				    <button type="submit" class="close close_button" value="delete" >
-				    	<span aria-hidden="true">&times;</span>
-						<span class="sr-only">Close</span>
-					</button>
-				</div>
-			</form>
-	      <div class="media">
-	  		<div class="media-body">
-	    		<h4 class="media-heading"><%= post.title %></h4>
-	          <p class="text-right">By <%= User.find(post.user_id).username %></p>
-	          <p><%= post.content %></p>
-	          <ul class="list-inline list-unstyled">
-	  			<li><span><i class="glyphicon glyphicon-calendar"></i> <%= post.created_at %> </span></li>
-				</ul>
-	       </div>
-	    </div>
-	  </div>
-	 </div>
- <% end %>
+	<% @posts.reverse.each do |post| %>
+		<div class="container post" >
+		  <div class="well">
+		  		<% if User.find(post.user_id).id== @session[:user_id]%>
+			  		<form accept-charset="UTF-8" action="/post/<%= post.id%>" method="post">
+				  		<div style="margin:0;padding:0">
+						    <input name="_method" type="hidden" value="DELETE" />
+						    <input name="utf8" type="hidden" value="&#x2713;" />
+						    <button type="submit" class="close close_button" value="delete" >
+						    	<span aria-hidden="true">&times;</span>
+								<span class="sr-only">Close</span>
+							</button>
+						</div>
+					</form>
+				<% end %>
+		      <div class="media">
+		  		<div class="media-body">
+		    		<h4 class="media-heading"><%= post.title %></h4>
+		          <p class="text-right">By <%= User.find(post.user_id).username %></p>
+		          <p><%= post.content %></p>
+		          <ul class="list-inline list-unstyled">
+		  			<li><span><i class="glyphicon glyphicon-calendar"></i> <%= post.created_at %> </span></li>
+					</ul>
+		       </div>
+		    </div>
+		  </div>
+		 </div>
+ 	<% end %>
+<% end %>
