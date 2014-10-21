@@ -20,30 +20,30 @@ class UserController < MainController
 		#@user.password = @params['password']
 		@user.save!
 		@user.errors.full_messages
+		render "/user/index"
 	end
 	def login
 		@user_id=@session[:user_id]
 		if @user_id.nil? #|| @user_id.empty?
 			render "login"
 		else
-			return " You are already logged in <a href=\"/user/logout\"> Logout </a>"
+			"You are already logged in <a href=\"/post\">Back </a>"
 		end
-
 	end
 	def logout
 		if !@session[:user_id].nil?
 			@session.delete('user_id')
 		end
-		return "You are not logged in"
+		render "login"
 	end
 	def login_post
 		@user = User.find_by_username(@params['username'])
   		if @user && @user.password == @params['password']
   			@session[:user_id]=@user.id
-  			render "success"
+  			redirect_to "/post/index"
   			#puts "success"
   		else
-  			render "fail"
+  			render "login"
   			#puts "Login Error"
   		end
   	#render "success"
@@ -54,11 +54,13 @@ class UserController < MainController
 		render "show"
 	end
 	def edit
+		render "edit"
 	end
 	def update
 	end
 	def destroy
 		User.destroy(@id)
 		"Deleted"
+		redirect_to "index"
 	end
 end

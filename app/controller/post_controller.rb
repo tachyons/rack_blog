@@ -23,19 +23,20 @@ class PostController  < MainController
 		# @post.user_id="0";
 		@post.save!
 		@post.errors.full_messages
-		"<a href=\"/post\">Back </a>"
+		redirect_to "index"
 	end
 	def destroy
 		@user_id=@session[:user_id]
 		@post_user_id=Post.find(@id).user_id
 		if @user_id.nil?
-			return " Please Login"
+			"Please Login <a href=\"/user/login\">Back </a>"
 		elsif @user_id != @post_user_id
-			return " You are not authenticated"
+			"You are not authenticated <a href=\"/post\">Back </a>"
 		else
 			Post.destroy(@id)
-			"Deleted"
+			"Deleted <a href=\"/post\">Back </a>"
 		end
+		redirect_to "index"
 	end
 	def show
 		@post=Post.find_by_id(@id)

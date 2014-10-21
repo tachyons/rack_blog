@@ -78,11 +78,14 @@ code {
   width:1000px;
 }
 #new_post_container {
-  width: 355px;
+  width: 450px;
 }
 #success_message{
   color:green;
 }
 #error_status {
   color:red;
+}
+#post_input{
+  width: 400px;
 }

@@ -17,7 +17,7 @@ $(document).ready(function(){
 
         return replacedText;
     }
-	$("#post_input").keydown(function(){
+	$("#post_input").keyup(function(){
   		var input = $('#post_input'), count = 0, limit = 120;
     	count = $.trim(input.val()).length;
   		remaining = limit - count;

@@ -26,7 +26,18 @@ class MyApp #just added a comment.. nothing else
 		route(@path,@req_method,@parameters)
 		# @request.session[:msg]="Hello Rack"
 		@request.session.update(@session);
-		Rack::Response.new(@responce)
+		res = Rack::Response.new
+		#res["Content-Type"] = "text/plain"
+		puts "Status :" + @status.to_s
+		res.status=200
+		if(@status!=301)
+			res.write @responce
+			res.finish;
+		else
+			res.redirect(@responce)
+			res.finish;
+		end
+		#Rack::Response.new(@responce)
 		# @request.session = { :font_size => 10, :font_family => "Arial" }
 		#grades = { "Jane Doe" => 10, "Jim Doe" => 6 }
 
@@ -40,7 +51,7 @@ class MyApp #just added a comment.. nothing else
 		 	return nil
 		end
 		controller,action,id=url_parser(path)
-		@responce,@session = case req_method
+		@responce,@session,@status = case req_method
 			when 'GET'
 				if(controller==nil)
 					als_load(nil,'post','index',nil)
@@ -118,7 +129,7 @@ class MyApp #just added a comment.. nothing else
 		#@responce+=class_name;
 		ob=class_name.constantize.new(params,id,@session)
 		ob.session = @request.session 
-		[ob.send(action),ob.session]
+		[ob.send(action),ob.session,ob.status]
 		#@responce=" Action=#{action}"
 	end
 	def get_controllers_list
