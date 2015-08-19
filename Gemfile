@@ -6,6 +6,8 @@ gem 'tilt'
 gem 'haml'
 gem 'mysql'
 gem 'activerecord'
+gem 'shotgun'
+gem 'bcrypt'
 
 group :development, :test do
   gem 'pry'
