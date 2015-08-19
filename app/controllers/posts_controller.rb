@@ -1,12 +1,11 @@
 
-require './app/model/post_model.rb'
-require './app/model/user_model.rb'
-load './app/controller/MainController.rb'
-class PostController  < MainController
+require './app/models/post.rb'
+require './app/models/user.rb'
+load './app/controllers/MainController.rb'
+class PostsController  < MainController
 	def index
 		@posts=Post.all
 		render "index"
-
 	end
 	def new
 		render "new"
@@ -18,9 +17,6 @@ class PostController  < MainController
 		end
 		@user = User.find(@user_id)
     	@post = @user.posts.create(@params)
-
-		# @post= Post.new(@params)
-		# @post.user_id="0";
 		@post.save!
 		@post.errors.full_messages
 		redirect_to "index"
@@ -29,12 +25,12 @@ class PostController  < MainController
 		@user_id=@session[:user_id]
 		@post_user_id=Post.find(@id).user_id
 		if @user_id.nil?
-			"Please Login <a href=\"/user/login\">Back </a>"
+			"Please Login <a href=\"/users/login\">Back </a>"
 		elsif @user_id != @post_user_id
-			"You are not authenticated <a href=\"/post\">Back </a>"
+			"You are not authenticated <a href=\"/posts\">Back </a>"
 		else
 			Post.destroy(@id)
-			"Deleted <a href=\"/post\">Back </a>"
+			"Deleted <a href=\"/posts\">Back </a>"
 		end
 		redirect_to "index"
 	end

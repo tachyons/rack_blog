@@ -46,14 +46,14 @@ class MyApp #just added a comment.. nothing else
 		@responce=""
 		@controller_list=get_controllers_list
 		if @controller_list.nil?
-		 	@responce="<a href=\"user/new\">shdjb</a>";
+		 	@responce="<a href=\"users/new\">shdjb</a>";
 		 	return nil
 		end
 		controller,action,id=url_parser(path)
 		@responce,@session,@status = case req_method
 			when 'GET'
 				if(controller==nil)
-					als_load(nil,'post','index',nil)
+					als_load(nil,'posts','index',nil)
 				else 
 					if(action==nil)
 						als_load(parameters,controller)
@@ -122,7 +122,7 @@ class MyApp #just added a comment.. nothing else
 			end
 	end
 	def als_load(params,controller,action="index",id=nil)
-		controller_file="./app/controller/"+controller+"_controller.rb"
+		controller_file="./app/controllers/"+controller+"_controller.rb"
 		load controller_file
 		class_name=controller.capitalize+"Controller"
 		#@responce+=class_name;
@@ -133,7 +133,7 @@ class MyApp #just added a comment.. nothing else
 	end
 	def get_controllers_list
 		@controller_list=[]
-		@list= Dir['./app/controller/**.rb']
+		@list= Dir['./app/controllers/**.rb']
 		@list.each { |controller|
 			@controller_list.push(controller[/\w*\.rb/,0].sub(".rb","").sub("_controller",""))
 		}

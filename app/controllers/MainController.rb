@@ -12,11 +12,11 @@ class MainController
 		return path
 	end
 	def render(template)
-		path=File.expand_path("../../view/layouts/application.html.erb",__FILE__)
+		path=File.expand_path("../../views/layouts/application.html.erb",__FILE__)
 		ERB.new(File.read(path)).result(binding)
 	end
 	def render_view(template)
-		path=File.expand_path("../../view/#{self.class.to_s.downcase.sub("controller","")}/#{template}.html.erb",__FILE__)
+		path=File.expand_path("../../views/#{self.class.to_s.downcase.sub("controller","")}/#{template}.html.erb",__FILE__)
 		ERB.new(File.read(path)).result(binding)
 	end
 

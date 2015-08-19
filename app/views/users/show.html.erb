@@ -84,7 +84,7 @@
 <% @posts.reverse.each do |post| %>
 	<div class="container">
 	  <div class="well">
-	  		<form accept-charset="UTF-8" action="/post/<%= post.id%>" method="post">
+	  		<form accept-charset="UTF-8" action="/posts/<%= post.id%>" method="post">
 		  		<div style="margin:0;padding:0">
 				    <input name="_method" type="hidden" value="DELETE" />
 				    <input name="utf8" type="hidden" value="&#x2713;" />
